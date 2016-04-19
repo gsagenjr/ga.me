@@ -44,11 +44,11 @@ var NavMenuPage = (function () {
                 googlePlusIcon : $$('.icon-tz-button-google'),
                 signInWithGooglePlus : $$('[ng-click="loginGoogle(); $event.stopPropagation()"]'),
                 twitterIcon : $$('.icon-tz-button-twitter'),
-                signInWithTwitter : $$('ng-click="loginTwitter(); $event.stopPropagation()"'),
+                signInWithTwitter : $$('[ng-click="loginTwitter(); $event.stopPropagation()"]'),
                 
                 userIcon : $$('.icon-tz-glyph-signin'),
                 signInWithUsername : $$('[ng-click="login(); $event.stopPropagation()"]'),
-                createIcon: $$('.icon-tz-glyph-createaccount'),
+                createNewAccountIcon: $$('.icon-tz-glyph-createaccount'),
                 createNewAccount: $$('[ng-click="signUp(); $event.stopPropagation()"]')
             },
             
