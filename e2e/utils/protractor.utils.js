@@ -25,6 +25,23 @@ var ProtractorUtils = (function () {
             });
         };
     };
+    
+    
+    ProtractorUtils.prototype.elementHasClass = function(element, classToCheckFor) {
+        return function (index) {
+            var i = index || 0;
+            var className = classToCheckFor;
+            return element.get(i).getAttribute('class').then(function (result) {
+                console.log('\n\nResults: ' + result);
+                console.log('\n\nCool Result: ' + (result.indexOf(className) >= 0));
+                if(result.indexOf(className)){
+                    console.log(result.indexOf(className));
+                }
+                return (result.indexOf(className) >= 0);
+            });
+        };
+    };
+    
     ProtractorUtils.prototype.getInnerHtml = function (element) {
         return function (index) {
             var i = index || 0;
@@ -77,7 +94,7 @@ var ProtractorUtils = (function () {
             });
         };
     };
-    ProtractorUtils.prototype.getCssValue = function (element, cssValue) {
+    ProtractorUtils.prototype.getElementCssValue = function (element, cssValue) {
         return function (index) {
             var i = index || 0;
             return element.get(i).getCssValue(cssValue).then(function (result) {
@@ -85,6 +102,8 @@ var ProtractorUtils = (function () {
             });
         };
     };
+    
+    
     // Element to wait for written as css selector, error message to use, timeout that you would like to wait for element, standard timeout to set the webdriver back to
     // Keep in mind, if either timeouts are longer than JasmineNodeOpts.defaultTimeoutInterval, then the test will hit an ASYNC TIMEOUT FAILURE error
     ProtractorUtils.prototype.waitForElementToBePresent = function (selectorText, errorMessage, temporaryTimeout, standardBrowserTimeout) {
@@ -114,6 +133,42 @@ var ProtractorUtils = (function () {
             });
         };
     };
+    
+    
+    // Handle angular sync for non-angular sites, such as facebook
+    ProtractorUtils.prototype.ignoreSync = function(){
+        var flow = protractor.promise.controlFlow();
+        return flow.execute(function () {
+            browser.ignoreSynchronization = true;
+        });
+    };
+    ProtractorUtils.prototype.unIgnoreSync = function(){
+        var flow = protractor.promise.controlFlow();
+        return flow.execute(function () {
+            browser.ignoreSynchronization = false;
+        });
+    };
+    
+    // Handle switching and closing windows
+    ProtractorUtils.prototype.switchToWindow = function(index){
+        var i = index || 0;
+        return browser.getAllWindowHandles().then(function(handles){
+            return browser.switchTo().window(handles[i]);
+        });
+    };
+    ProtractorUtils.prototype.closeWindow = function(windowToClose){
+        // Use self to call own function, as 'this'has a different scope further down
+        var self = this;
+        
+        var closing = windowToClose || 1; // Close the second window, usually popup, or whatever handle is passed in
+        return this.switchToWindow(closing).then(function(){
+            browser.close();
+            browser.sleep(3000);
+            self.switchToWindow(0);
+        });
+    }
+    
+    
     return ProtractorUtils;
 })();
 module.exports = new ProtractorUtils;

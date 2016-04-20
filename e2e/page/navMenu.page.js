@@ -18,16 +18,16 @@ var NavMenuPage = (function () {
     NavMenuPage.prototype.initElements = function () {
         this.elements = {
             topNav: {
-                homeIcon: $$('[ng-click="state.fn.goToIndex(); $event.stopPropagation()"]'),
-                drawerIcon: $$('[ng-click="toggleDrawer(\'\')"]'),
+                homeIcon: $$('.nav-bar .nav-home-icon'),
+                drawerIcon: $$('.nav-bar .nav-menu-icon'),
                     
-                signInButton : $$('[ng-click="login(); $event.stopPropagation()"]'),
+                signInButton : $$('.nav-bar .nav-signin'),
                 
-                facebookIcon : $$('[ng-click="loginFB();"]'),
-                googlePlusIcon : $$('[ng-click="loginGoogle();"]'),
-                twitterIcon : $$('[ng-click="loginTwitter();"]'),
+                facebookIcon : $$('.nav-bar .icon-tz-button-facebook'),
+                googlePlusIcon : $$('.nav-bar .icon-tz-button-google'),
+                twitterIcon : $$('.nav-bar .icon-tz-button-twitter'),
                 
-                signUpButton : $$('[ng-click="signup(); $event.stopPropagation()"]'),
+                signUpButton : $$('.nav-bar .nav-signup'),
             },
             
             drawer: {
