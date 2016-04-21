@@ -12,5 +12,12 @@
   },
   "engines": {
     "node": ">=5.0.0"
+  },
+  "scripts": {
+    "preupdate-webdriver": "npm install",
+    "update-webdriver": "node node_modules/protractor/bin/webdriver-manager update",
+
+    "preprotractor": "npm run update-webdriver",
+    "protractor": "protractor e2e/protractor.conf.js"
   }
 }
