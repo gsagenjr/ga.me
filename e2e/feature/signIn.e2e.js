@@ -22,7 +22,7 @@ describe('Sign In Modal', function() {
         expect(SignInPage.getText.forgotTab()).toEqual('FORGOT', 'Forgot Tab did not contain the expected text');
     });
     
-    fdescribe('Sign In Tab', function(){
+    describe('Sign In Tab', function(){
         it('Has all elements displayed', function(){
             expect(SignInPage.isDisplayed.signIn.facebookSignIn()).toBeTruthy('Facebook Sign in not displayed');
             expect(SignInPage.isDisplayed.signIn.twitterSignIn()).toBeTruthy('Twitter Sign In not displayed');
@@ -38,8 +38,6 @@ describe('Sign In Modal', function() {
             expect(SignInPage.isDisplayed.signIn.labels()).toBeTruthy('Sign In Label not displayed');
             expect(SignInPage.isDisplayed.signIn.labels(1)).toBeTruthy('Password Label not displayed');
             expect(SignInPage.isDisplayed.signIn.labels(2)).toBeTruthy('Keep Me Signed In Label not displayed');
-            
-          
         });
         
         it('Has all element text', function(){
@@ -54,10 +52,13 @@ describe('Sign In Modal', function() {
             expect(SignInPage.getText.signIn.labels(2)).toEqual('KEEP ME SIGNED IN', 'Keep Me Signed In Label did not contain the expected text');
         });
         
-        fit('Has Sign In Tab highlighted', function(){
-            expect(SignInPage.hasClass.signInTab(0, 'a')).toEqual(true);
-            // expect(SignInPage.getAttribute.signIn.keepMeSignedInCheckbox(0, 'checked')).toBeTruthy('Keep Me Signed In Checkbox was not checked');
-            
-        })
+        it('Has Keep Me Signed In Checkbox checked by default', function(){
+            expect(SignInPage.getCheckboxStatus()).toEqual('""', "Checkbox was not checked");
+        });
+        
+        it('Can uncheck Keep Me Signed In Checkbox', function(){
+            SignInPage.click.signIn.keepMeSignedInCheckbox();
+            expect(SignInPage.getCheckboxStatus()).toEqual('" "', "Checkbox was not checked");
+        });
     })
 })

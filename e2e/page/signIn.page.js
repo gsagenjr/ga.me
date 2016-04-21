@@ -8,12 +8,16 @@ var SignInPage = (function () {
         this.initSendKeys();
         this.initGetText();
         this.initClick();
-        this.initHasClass();
-    }
+        this.initGetCheckboxStatus();
+        this.initGetFakeGuid();
+        this.initWaitUntilThinkingIsFinished();
+        this.initWaitUntilSignInIsDisplayed();
+    };
     
     SignInPage.prototype.get = function () {
         browser.get('/');
-        return this.click.signInButton();
+        this.click.signInButton();
+        return this.waitUntilSignInIsDisplayed();
     };
     
     SignInPage.prototype.initElements = function () {
@@ -44,12 +48,12 @@ var SignInPage = (function () {
             },
             
             newUser: {
-                usernameField: $$('.username-input input')
+                usernameField: $$('.username-input input'),
+                letsPlayButton: $$('.modal [ng-click="signUp(); $event.stopPropagation()"]'),
+                thinking: $$('[ng-show="thinking"]'),
                 
-            },
-            
-            forgot: {
-                
+                usernameTaken: $$('[ng-show="usernameTaken"]'),
+                suggestedUsername: $$('.login-radio')
             }
         };
     };
@@ -73,11 +77,32 @@ var SignInPage = (function () {
         this.click = {};
         HelperUtils.applyFunctionToElements(this.click, this.elements, ProtractorUtils.clickElement);
     };
-    
-    SignInPage.prototype.initHasClass = function () {
-        this.hasClass = {};
-        HelperUtils.applyFunctionToElements(this.hasClass, this.elements, ProtractorUtils.elementHasClass);
+
+    SignInPage.prototype.initGetCheckboxStatus = function () {
+        this.getCheckboxStatus = function(){
+            return browser.executeScript("return window.getComputedStyle(document.querySelector('label.checkbox'), ':before').content");
+        };
     };
+    
+    SignInPage.prototype.initGetFakeGuid = function(){
+        this.getFakeGuid = function(){
+            return (((1+Math.random())*0x10000000)|0).toString(16).substring(1); 
+        };
+    };
+    
+    SignInPage.prototype.initWaitUntilThinkingIsFinished = function(){
+        var self = this;
+        this.waitUntilThinkingIsFinished = function(){
+            browser.wait(protractor.until.elementIsNotVisible($('[ng-show="thinking"]')), 10000, "Thinking loading indicator took too long");
+        };
+    };
+    
+    SignInPage.prototype.initWaitUntilSignInIsDisplayed = function(){
+        var self = this;
+        this.waitUntilSignInIsDisplayed = function(){
+            browser.wait(protractor.until.elementIsVisible($('.login-modal .modal')), 10000, "Sign in modal took too long");
+        };
+    }
     
     return SignInPage;
 })();

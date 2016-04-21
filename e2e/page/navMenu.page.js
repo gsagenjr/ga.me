@@ -5,10 +5,8 @@ var NavMenuPage = (function () {
     function NavMenuPage() {
         this.initElements();
         this.initIsDisplayed();
-        this.initSendKeys();
         this.initGetText();
         this.initClick();
-        this.initGetAttribute();
     }
     
     NavMenuPage.prototype.get = function () {
@@ -71,11 +69,6 @@ var NavMenuPage = (function () {
         HelperUtils.applyFunctionToElements(this.isDisplayed, this.elements, ProtractorUtils.isElementDisplayed);
     };
     
-    NavMenuPage.prototype.initSendKeys = function () {
-        this.sendKeys = {};
-        HelperUtils.applyFunctionToElements(this.sendKeys, this.elements, ProtractorUtils.sendKeysToElement);
-    };
-    
     NavMenuPage.prototype.initGetText = function () {
         this.getText = {};
         HelperUtils.applyFunctionToElements(this.getText, this.elements, ProtractorUtils.getElementText);
@@ -84,11 +77,6 @@ var NavMenuPage = (function () {
     NavMenuPage.prototype.initClick = function () {
         this.click = {};
         HelperUtils.applyFunctionToElements(this.click, this.elements, ProtractorUtils.clickElement);
-    };
-    
-    NavMenuPage.prototype.initGetAttribute = function () {
-        this.getAttribute = {};
-        HelperUtils.applyFunctionToElements(this.getAttribute, this.elements, ProtractorUtils.getElementAttribute);
     };
     
     return NavMenuPage;

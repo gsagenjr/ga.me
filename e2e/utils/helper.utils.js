@@ -4,10 +4,10 @@ var HelperUtils = (function () {
     // Example use:
     //  private initClick() {
     //      this.click = {
-    //          vehiclesOfInterestTab: protractorUtils.clickElement(this.elements.vehiclesOfInterestTab)
+    //          coolElement: protractorUtils.clickElement(this.elements.coolElement)
     //      };
     //  }
-    // vehiclesOfInterestPage.click.vehicleOfInterestTab();
+    // coolPage.click.coolElement();
     HelperUtils.applyFunctionToElements = function (applyToObject, applyFromObject, func) {
         for (var property in applyFromObject) {
             if (applyFromObject.hasOwnProperty(property)) {
