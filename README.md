@@ -2,6 +2,10 @@
 
 This project shows one way to handle protractor testing, using the website ga.me as an example.
 
+Please ensure you have Node ^5.x, and Python ^2.7.x
+
+To run the tests, please run `npm run protractor`.
+
 Points of interest:
 
 *Page objects do not ever reveal their elements. The only way to interact with them is through the results of functions being used on the private elements.
