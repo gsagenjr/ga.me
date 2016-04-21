@@ -1,6 +1,9 @@
 var ProtractorUtils = (function () {
-    function ProtractorUtils() {
-    }
+    function ProtractorUtils() {}
+
+    // The utils here are to enhance all basic protractor functionality
+    // Most of the utils here use a currying pattern to allow passing the index of an element, as it is used so often
+
 
     ProtractorUtils.prototype.isElementDisplayed = function (element) {
         return function (index) {
@@ -24,8 +27,8 @@ var ProtractorUtils = (function () {
         return function (index) {
             var i = index || 0;
             return browser.wait(protractor.ExpectedConditions.elementToBeClickable(element.get(i)), 5000, "Element not clickable").then(function () {
-                // Moves mouse to pixel 5,5 on the element. Prevents some edge cases that cause click issues, har har har
-                return browser.actions().mouseMove(element.get(i), { x: 5, y: 5 }).perform().then(function () {
+                // Moves mouse to pixel 2,2 on the element. Prevents some issues clicking certain styled elements
+                return browser.actions().mouseMove(element.get(i), { x: 2, y: 2 }).perform().then(function () {
                     return element.get(i).click();
                 });
             });

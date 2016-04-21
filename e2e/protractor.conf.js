@@ -1,6 +1,7 @@
 var SpecReporter = require('jasmine-spec-reporter');
 
 exports.config = {
+    // Set timeouts for scripts and page load
     allScriptsTimeout: 35000,
     getPageTimeout: 20000,
 
@@ -10,6 +11,8 @@ exports.config = {
 
     capabilities: {
         'browserName': 'chrome',
+        // Allow multiple browsers to run at once to increase speed
+        // Also forces tests to be written such that they don't interfere with each other!
         shardTestFiles: true,
         maxInstances: 5,
         loggingPrefs: {
@@ -27,7 +30,7 @@ exports.config = {
     },
 
     onPrepare: function () {
-        // Allow changing viewport, rather than browser size
+        // Allow changing viewport, rather than browser size. Many sites use size breakpoints, so this ensures every test runs vs a standardized breakpoint on any computer
         protractor.setViewportSize = function(width, height){
             const JS_GET_PADDING = "return {"
                 + "w: window.outerWidth - window.innerWidth,"

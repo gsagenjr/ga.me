@@ -25,7 +25,6 @@ var HomePage = (function () {
         HelperUtils.applyFunctionToElements(this.isDisplayed, this.elements, ProtractorUtils.isElementDisplayed);
     };
     
-    
     HomePage.prototype.initGetText = function () {
         this.getText = {};
         HelperUtils.applyFunctionToElements(this.getText, this.elements, ProtractorUtils.getElementText);
