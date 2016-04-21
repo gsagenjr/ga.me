@@ -14,7 +14,7 @@ exports.config = {
         // Allow multiple browsers to run at once to increase speed
         // Also forces tests to be written such that they don't interfere with each other!
         shardTestFiles: true,
-        maxInstances: 5,
+        maxInstances: 3,
         loggingPrefs: {
             'driver': 'INFO',
             'browser': 'INFO'

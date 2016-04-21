@@ -8,6 +8,7 @@ var HomePage = (function () {
         this.initGetText();
     }
     
+    // Note: Only takes you to the 'real' homepage when you are logged in.
     HomePage.prototype.get = function () {
         return browser.get('/');
     };

@@ -36,6 +36,7 @@ describe('Sign In Modal', function() {
             expect(SignInPage.isDisplayed.signIn.signInButton()).toBeTruthy('Sign In Button not displayed');
             
             expect(SignInPage.isDisplayed.signIn.labels()).toBeTruthy('Sign In Label not displayed');
+            // An example of the currying, we can grab any index of element just by passing the index in.
             expect(SignInPage.isDisplayed.signIn.labels(1)).toBeTruthy('Password Label not displayed');
             expect(SignInPage.isDisplayed.signIn.labels(2)).toBeTruthy('Keep Me Signed In Label not displayed');
         });
@@ -48,16 +49,19 @@ describe('Sign In Modal', function() {
             expect(SignInPage.getText.signIn.signInButton()).toEqual('SIGN IN', 'Sign In Button did not contain the expected text');
             
             expect(SignInPage.getText.signIn.labels()).toEqual('SIGN IN', 'Sign In Label did not contain the expected text');
+            // An example of the currying, we can grab any index of element just by passing the index in.
             expect(SignInPage.getText.signIn.labels(1)).toEqual('PASSWORD', 'Password Label did not contain the expected text');
             expect(SignInPage.getText.signIn.labels(2)).toEqual('KEEP ME SIGNED IN', 'Keep Me Signed In Label did not contain the expected text');
         });
         
         it('Has Keep Me Signed In Checkbox checked by default', function(){
+            // Protractor doesnt understand the exact checkbox character used, but this is what it sees when the checkbox is checked
             expect(SignInPage.getCheckboxStatus()).toEqual('""', "Checkbox was not checked");
         });
         
         it('Can uncheck Keep Me Signed In Checkbox', function(){
             SignInPage.click.signIn.keepMeSignedInCheckbox();
+            // When not checked, the checkbox status is simply a 'blank' string
             expect(SignInPage.getCheckboxStatus()).toEqual('" "', "Checkbox was not checked");
         });
     })

@@ -17,6 +17,7 @@ var SignInPage = (function () {
     SignInPage.prototype.get = function () {
         browser.get('/');
         this.click.signInButton();
+        // We use a wait here, as the modal can sometimes take a while to appear
         return this.waitUntilSignInIsDisplayed();
     };
     
