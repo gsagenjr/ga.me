@@ -12,4 +12,4 @@ Points of interest:
 
 *Tests never rely on the tests before them passing before the later ones can pass themselves.. Each resets with a beforeEach, and afterEach could be added as well if there is a consistant need for something like ignoreSync.
 
-*Tests are ran in multiple browsers at once. This forces slightly better testing habits, as, once again, tests are not allowed to build off of eachother.
+*Tests are ran in multiple browsers at once. Along with the speed benefits, this also forces slightly better testing habits, as, once again, tests are not allowed to build off of eachother.
